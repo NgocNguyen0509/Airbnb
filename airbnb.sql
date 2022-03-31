@@ -500,7 +500,7 @@ WITH to_remove2 AS(
 SELECT COUNT(DISTINCT(id)) AS unique_id
 	FROM airbnb.listings
 )SELECT	
-	l.neighbourhood, 
+	l.neighbourhood_clenased, 
 	ROUND (AVG(l.price_$),3) AS average_price, 
 	ROUND (AVG(l.review_scores_rating),3) AS average_rating, 
 	MAX(l.review_scores_rating) AS max_score_rating,
@@ -510,6 +510,6 @@ SELECT COUNT(DISTINCT(id)) AS unique_id
 	FROM view_sum vs ,airbnb.listings l 
 	INNER JOIN 
 	airbnb.listings_scrape ls ON ls.id = l.id 
-	GROUP BY l.neighbourhood
+	GROUP BY l.neighbourhood_cleansed
 	ORDER BY percentage_total_listing DESC;
 	
